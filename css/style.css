@@ -1,0 +1,21 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+/* .my-class {
+  display: inline-block;
+  max-width: 10rem;
+} */
+
+.thumbnail{
+    max-width: 100px;
+}
+
+.col-descripcion {
+    width: 30%; /* Ancho personalizado */
+}
