@@ -1,3 +1,6 @@
+import { Pelicula, prueba } from "./classPelicula.js";
+
+console.log(prueba)
 //variables globales
 const btnAgregarPelicula = document.getElementById("btnCrearPelicula");
 const modalPelicula = new bootstrap.Modal(
@@ -25,6 +28,10 @@ function administrarFormularioPelicula(e) {
 
 function creandoPelicula(){
     console.log('aqui tengo que crear la peli')
+    //todo: validar los datos
+    //crear un objeto Pelicula
+    //almacenar el objeto en el array de peliculas
+    //guardar el array en localstorage
 }
 
 //logica

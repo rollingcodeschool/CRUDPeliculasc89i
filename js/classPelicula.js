@@ -1,4 +1,4 @@
-class Pelicula {
+export class Pelicula {
     #id;
     #titulo;
     #descripcion;
@@ -8,8 +8,9 @@ class Pelicula {
     #duracion;
     #pais;
     #reparto;
+    #director;
 
-    constructor(titulo, descripcion, imagen, genero, anio, duracion, pais, reparto) {
+    constructor(titulo, descripcion, imagen, genero, anio, duracion, pais, reparto, director) {
         this.#id = crypto.randomUUID();
         this.#titulo = titulo;
         this.#descripcion = descripcion;
@@ -19,6 +20,7 @@ class Pelicula {
         this.#duracion = duracion;
         this.#pais = pais;
         this.#reparto = reparto;
+        this.#director = director;
     }
 
     get id() {
@@ -92,4 +94,15 @@ class Pelicula {
     set reparto(reparto) {
         this.#reparto = reparto;
     }
+    get director() {
+        return this.#director;
+    }
+
+    set director(director) {
+        this.#director = director;
+    }
 }
+
+export let prueba = 234
+
+ 
