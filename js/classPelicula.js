@@ -1,4 +1,4 @@
-export class Pelicula {
+class Pelicula {
     #id;
     #titulo;
     #descripcion;
@@ -103,6 +103,7 @@ export class Pelicula {
     }
 }
 
-export let prueba = 234
+export default Pelicula
+
 
  
