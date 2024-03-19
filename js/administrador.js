@@ -7,6 +7,17 @@ const modalPelicula = new bootstrap.Modal(
 );
 let crearPelicula = true;
 const formularioPelicula = document.getElementById("formPelicula");
+const codigo = document.getElementById('codigo');
+const titulo = document.getElementById('titulo');
+const descripcion = document.getElementById('descripcion');
+const anio = document.getElementById('anio');
+const reparto = document.getElementById('reparto');
+const director = document.getElementById('director');
+const imagen = document.getElementById('imagen');
+const genero = document.getElementById('genero');
+const duracion = document.getElementById('duracion');
+const pais = document.getElementById('pais');
+const peliculas = [];
 
 //funciones
 function mostrarModalPelicula() {
@@ -29,10 +40,12 @@ function creandoPelicula(){
     console.log('aqui tengo que crear la peli')
     //todo: validar los datos
     //crear un objeto Pelicula
-    const peliculaNueva = new Pelicula('Al filo de la mañana', 'tipo que vive en un bucle de tiempo','https://pics.filmaffinity.com/no_way_up-335653411-large.jpg','acción',2014, 73,'EEUU','Tom Cruise','Doug Liman' )
+    const peliculaNueva = new Pelicula(titulo.value, descripcion.value, imagen.value, genero.value, anio.value, duracion.value, pais.value,reparto.value,director.value )
     console.log(peliculaNueva);
     //almacenar el objeto en el array de peliculas
+    peliculas.push(peliculaNueva)
     //guardar el array en localstorage
+    console.log(peliculas)
 }
 
 //logica
