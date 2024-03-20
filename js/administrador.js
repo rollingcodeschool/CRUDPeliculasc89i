@@ -41,11 +41,15 @@ function creandoPelicula(){
     //todo: validar los datos
     //crear un objeto Pelicula
     const peliculaNueva = new Pelicula(titulo.value, descripcion.value, imagen.value, genero.value, anio.value, duracion.value, pais.value,reparto.value,director.value )
-    console.log(peliculaNueva);
     //almacenar el objeto en el array de peliculas
     peliculas.push(peliculaNueva)
     //guardar el array en localstorage
     console.log(peliculas)
+    guardarLocalStorage()
+}
+
+function guardarLocalStorage() {
+  localStorage.setItem('listaPeliculasKey', JSON.stringify(peliculas))
 }
 
 //logica
