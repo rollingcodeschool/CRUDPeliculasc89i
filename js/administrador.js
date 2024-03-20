@@ -7,18 +7,20 @@ const modalPelicula = new bootstrap.Modal(
 );
 let crearPelicula = true;
 const formularioPelicula = document.getElementById("formPelicula");
-const codigo = document.getElementById('codigo');
-const titulo = document.getElementById('titulo');
-const descripcion = document.getElementById('descripcion');
-const anio = document.getElementById('anio');
-const reparto = document.getElementById('reparto');
-const director = document.getElementById('director');
-const imagen = document.getElementById('imagen');
-const genero = document.getElementById('genero');
-const duracion = document.getElementById('duracion');
-const pais = document.getElementById('pais');
-const peliculas = [];
+const codigo = document.getElementById("codigo");
+const titulo = document.getElementById("titulo");
+const descripcion = document.getElementById("descripcion");
+const anio = document.getElementById("anio");
+const reparto = document.getElementById("reparto");
+const director = document.getElementById("director");
+const imagen = document.getElementById("imagen");
+const genero = document.getElementById("genero");
+const duracion = document.getElementById("duracion");
+const pais = document.getElementById("pais");
+const peliculas = JSON.parse(localStorage.getItem("listaPeliculasKey")) || [];
 
+console.log(localStorage.getItem("listaPeliculasKey"));
+console.log(peliculas);
 //funciones
 function mostrarModalPelicula() {
   crearPelicula = true;
@@ -30,26 +32,41 @@ function administrarFormularioPelicula(e) {
   e.preventDefault();
   if (crearPelicula) {
     //estoy creando la peli
-    creandoPelicula()
+    creandoPelicula();
   } else {
     //estoy editando la peli
   }
 }
 
-function creandoPelicula(){
-    console.log('aqui tengo que crear la peli')
-    //todo: validar los datos
-    //crear un objeto Pelicula
-    const peliculaNueva = new Pelicula(titulo.value, descripcion.value, imagen.value, genero.value, anio.value, duracion.value, pais.value,reparto.value,director.value )
-    //almacenar el objeto en el array de peliculas
-    peliculas.push(peliculaNueva)
-    //guardar el array en localstorage
-    console.log(peliculas)
-    guardarLocalStorage()
+function creandoPelicula() {
+  console.log("aqui tengo que crear la peli");
+  //todo: validar los datos
+  //crear un objeto Pelicula
+  const peliculaNueva = new Pelicula(
+    titulo.value,
+    descripcion.value,
+    imagen.value,
+    genero.value,
+    anio.value,
+    duracion.value,
+    pais.value,
+    reparto.value,
+    director.value
+  );
+  //almacenar el objeto en el array de peliculas
+  peliculas.push(peliculaNueva);
+  //guardar el array en localstorage
+  console.log(peliculas);
+  guardarLocalStorage();
+  limpiarFormularioPelicula();
 }
 
 function guardarLocalStorage() {
-  localStorage.setItem('listaPeliculasKey', JSON.stringify(peliculas))
+  localStorage.setItem("listaPeliculasKey", JSON.stringify(peliculas));
+}
+
+function limpiarFormularioPelicula() {
+  formularioPelicula.reset();
 }
 
 //logica
