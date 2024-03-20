@@ -69,6 +69,48 @@ function limpiarFormularioPelicula() {
   formularioPelicula.reset();
 }
 
+function cargaInicial(){
+  //verificar si tengo pelis
+  if(peliculas.length > 0){
+    peliculas.map((peli)=> dibujarFila())
+  }
+}
+
+function dibujarFila(){
+  const tbody = document.querySelector('#tablaPelicula')
+  tbody.innerHTML += `<tr>
+  <th scope="row">1</th>
+  <td>Kung Fu Panda 4</td>
+  <td class="col-descripcion">
+    Po, quien se convertirá en el Maestro Espiritual del Valle de
+    la Paz, busca a su sucesor como el nuevo Guerrero Dragón
+    mientras lucha contra una nueva enemiga llamada "La Camaleona"
+  </td>
+  <td>
+    <img
+      class="img-thumbnail rounded img-fluid thumbnail"
+      src="https://pics.filmaffinity.com/kung_fu_panda_4-159494298-large.jpg"
+    />
+  </td>
+  <td>Animación</td>
+  <td>
+    <button
+      class="btn btn-warning"
+      onclick=""
+    >
+      <i class="bi bi-pencil-square fs-4"></i>
+    </button>
+    <button
+      class="btn btn-danger"
+      onclick=""
+    >
+      <i class="bi bi-x-square fs-4"></i>
+    </button>
+  </td>
+</tr>`
+}
+
 //logica
 btnAgregarPelicula.addEventListener("click", mostrarModalPelicula);
 formularioPelicula.addEventListener("submit", administrarFormularioPelicula);
+cargaInicial();
