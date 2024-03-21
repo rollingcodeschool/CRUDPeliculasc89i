@@ -61,6 +61,13 @@ function creandoPelicula() {
   limpiarFormularioPelicula();
   //dibujar la nueva peli en la tabla
   dibujarFila(peliculaNueva)
+  //mostrar el mensaje al usuario
+  Swal.fire({
+    title: "Pelicula creada",
+    text: `La pelicula '${peliculaNueva.titulo}' fue creada correctamente`,
+    icon: "success"
+  });
+  // modalPelicula.hide()
 }
 
 function guardarLocalStorage() {
@@ -116,3 +123,4 @@ function dibujarFila(pelicula){
 btnAgregarPelicula.addEventListener("click", mostrarModalPelicula);
 formularioPelicula.addEventListener("submit", administrarFormularioPelicula);
 cargaInicial();
+
