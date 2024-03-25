@@ -60,12 +60,12 @@ function creandoPelicula() {
   guardarLocalStorage();
   limpiarFormularioPelicula();
   //dibujar la nueva peli en la tabla
-  dibujarFila(peliculaNueva)
+  dibujarFila(peliculaNueva);
   //mostrar el mensaje al usuario
   Swal.fire({
     title: "Pelicula creada",
     text: `La pelicula '${peliculaNueva.titulo}' fue creada correctamente`,
-    icon: "success"
+    icon: "success",
   });
   // modalPelicula.hide()
 }
@@ -78,16 +78,16 @@ function limpiarFormularioPelicula() {
   formularioPelicula.reset();
 }
 
-function cargaInicial(){
+function cargaInicial() {
   //verificar si tengo pelis
-  if(peliculas.length > 0){
-    peliculas.map((peli)=> dibujarFila(peli))
+  if (peliculas.length > 0) {
+    peliculas.map((peli) => dibujarFila(peli));
   }
 }
 
-function dibujarFila(pelicula){
-  console.log(pelicula)
-  const tbody = document.querySelector('#tablaPelicula')
+function dibujarFila(pelicula) {
+  console.log(pelicula);
+  const tbody = document.querySelector("#tablaPelicula");
   tbody.innerHTML += `<tr>
   <th scope="row">${pelicula.id}</th>
   <td>${pelicula.titulo}</td>
@@ -116,27 +116,45 @@ function dibujarFila(pelicula){
       <i class="bi bi-x-square fs-4"></i>
     </button>
   </td>
-</tr>`
+</tr>`;
 }
 
-window.borrarPelicula = (idPelicula) =>{
-  console.log('aqui tengo que borrar una peli')
-  console.log(idPelicula)
-  //buscar la posicion de la peli dentro del array que quiero borrar findIndex()
-  const posicionPeli = peliculas.findIndex((itemPelicula)=> itemPelicula.id === idPelicula )
-  console.log(posicionPeli)
-  //usar splice para borrar una peli del array
-  peliculas.splice(posicionPeli,1)
-  //actualizar el localstorage
-  guardarLocalStorage()
-  //actualizar la tabla
-  const tbody = document.querySelector('#tablaPelicula')
-  tbody.removeChild(tbody.children[posicionPeli])
- 
-}
+window.borrarPelicula = (idPelicula) => {
+  Swal.fire({
+    title: "¿Estas seguro de borrar la pelicula?",
+    text: "No puedes revertir este paso",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Borrar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    console.log(result);
+    if (result.isConfirmed) {
+      //aqui agrego todo el codigo para borrar
+     //buscar la posicion de la peli dentro del array que quiero borrar findIndex()
+      const posicionPeli = peliculas.findIndex(
+        (itemPelicula) => itemPelicula.id === idPelicula
+      );
+      console.log(posicionPeli);
+      //usar splice para borrar una peli del array
+      peliculas.splice(posicionPeli, 1);
+      //actualizar el localstorage
+      guardarLocalStorage();
+      //actualizar la tabla
+      const tbody = document.querySelector("#tablaPelicula");
+      tbody.removeChild(tbody.children[posicionPeli]);
+      Swal.fire({
+        title: "Pelicula eliminada",
+        text: `La pelicula fue eliminada correctamente`,
+        icon: "success",
+      });
+    }
+  });
+};
 
 //logica
 btnAgregarPelicula.addEventListener("click", mostrarModalPelicula);
 formularioPelicula.addEventListener("submit", administrarFormularioPelicula);
 cargaInicial();
-
