@@ -111,12 +111,25 @@ function dibujarFila(pelicula){
     </button>
     <button
       class="btn btn-danger"
-      onclick=""
+      onclick="borrarPelicula('${pelicula.id}')"
     >
       <i class="bi bi-x-square fs-4"></i>
     </button>
   </td>
 </tr>`
+}
+
+window.borrarPelicula = (idPelicula) =>{
+  console.log('aqui tengo que borrar una peli')
+  console.log(idPelicula)
+  //buscar la posicion de la peli dentro del array que quiero borrar findIndex()
+  const posicionPeli = peliculas.findIndex((itemPelicula)=> itemPelicula.id === idPelicula )
+  console.log(posicionPeli)
+  //usar splice para borrar una peli del array
+  peliculas.splice(posicionPeli,1)
+  //actualizar el localstorage
+  guardarLocalStorage()
+  //actualizar la tabla
 }
 
 //logica
