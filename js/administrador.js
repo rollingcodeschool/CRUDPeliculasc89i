@@ -1,4 +1,5 @@
 import Pelicula from "./classPelicula.js";
+import { cantidadCaracteres } from "./helpers/validaciones.js";
 
 //variables globales
 const btnAgregarPelicula = document.getElementById("btnCrearPelicula");
@@ -44,31 +45,36 @@ function creandoPelicula() {
   console.log("aqui tengo que crear la peli");
   //todo: validar los datos
   //crear un objeto Pelicula
-  const peliculaNueva = new Pelicula(
-    titulo.value,
-    descripcion.value,
-    imagen.value,
-    genero.value,
-    anio.value,
-    duracion.value,
-    pais.value,
-    reparto.value,
-    director.value
-  );
-  //almacenar el objeto en el array de peliculas
-  peliculas.push(peliculaNueva);
-  //guardar el array en localstorage
-  console.log(peliculas);
-  guardarLocalStorage();
-  limpiarFormularioPelicula();
-  //dibujar la nueva peli en la tabla
-  dibujarFila(peliculaNueva);
-  //mostrar el mensaje al usuario
-  Swal.fire({
-    title: "Pelicula creada",
-    text: `La pelicula '${peliculaNueva.titulo}' fue creada correctamente`,
-    icon: "success",
-  });
+  if(cantidadCaracteres(titulo, 2, 60) && cantidadCaracteres(descripcion, 2,200)){
+    const peliculaNueva = new Pelicula(
+      titulo.value,
+      descripcion.value,
+      imagen.value,
+      genero.value,
+      anio.value,
+      duracion.value,
+      pais.value,
+      reparto.value,
+      director.value
+    );
+    //almacenar el objeto en el array de peliculas
+    peliculas.push(peliculaNueva);
+    //guardar el array en localstorage
+    console.log(peliculas);
+    guardarLocalStorage();
+    limpiarFormularioPelicula();
+    //dibujar la nueva peli en la tabla
+    dibujarFila(peliculaNueva);
+    //mostrar el mensaje al usuario
+    Swal.fire({
+      title: "Pelicula creada",
+      text: `La pelicula '${peliculaNueva.titulo}' fue creada correctamente`,
+      icon: "success",
+    });
+  }else{
+    alert('hay datos incorrectos')
+  }
+  
   // modalPelicula.hide()
 }
 
