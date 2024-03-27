@@ -195,7 +195,7 @@ function editarPelicula() {
   const tbody = document.querySelector("#tablaPelicula");
   tbody.children[posicionPelicula].children[1].innerHTML = titulo.value;
   tbody.children[posicionPelicula].children[2].innerHTML = descripcion.value;
-  tbody.children[posicionPelicula].children[3].children[0].innerHTML = imagen.value;
+  tbody.children[posicionPelicula].children[3].children[0].src = imagen.value;
   tbody.children[posicionPelicula].children[4].innerHTML = genero.value;
   //5-mostrar un cartel al usuario
   Swal.fire(
