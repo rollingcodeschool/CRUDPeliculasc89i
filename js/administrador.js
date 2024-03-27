@@ -24,6 +24,7 @@ console.log(peliculas);
 //funciones
 function mostrarModalPelicula() {
   crearPelicula = true;
+  limpiarFormularioPelicula();
   modalPelicula.show();
 }
 
@@ -35,6 +36,7 @@ function administrarFormularioPelicula(e) {
     creandoPelicula();
   } else {
     //estoy editando la peli
+    editarPelicula();
   }
 }
 
@@ -105,7 +107,7 @@ function dibujarFila(pelicula) {
   <td>
     <button
       class="btn btn-warning"
-      onclick=""
+      onclick="prepararEditarPelicula('${pelicula.id}')"
     >
       <i class="bi bi-pencil-square fs-4"></i>
     </button>
@@ -133,7 +135,7 @@ window.borrarPelicula = (idPelicula) => {
     console.log(result);
     if (result.isConfirmed) {
       //aqui agrego todo el codigo para borrar
-     //buscar la posicion de la peli dentro del array que quiero borrar findIndex()
+      //buscar la posicion de la peli dentro del array que quiero borrar findIndex()
       const posicionPeli = peliculas.findIndex(
         (itemPelicula) => itemPelicula.id === idPelicula
       );
@@ -154,6 +156,57 @@ window.borrarPelicula = (idPelicula) => {
   });
 };
 
+window.prepararEditarPelicula = (idPelicula) => {
+  mostrarModalPelicula();
+  crearPelicula = false;
+  const peliBuscada = peliculas.find((pelicula) => pelicula.id === idPelicula);
+  //cargo los datos en el formulario
+  codigo.value = peliBuscada.id;
+  titulo.value = peliBuscada.titulo;
+  descripcion.value = peliBuscada.descripcion;
+  genero.value = peliBuscada.genero;
+  imagen.value = peliBuscada.imagen;
+  pais.value = peliBuscada.pais;
+  anio.value = peliBuscada.anio;
+  reparto.value = peliBuscada.reparto;
+  duracion.value = peliBuscada.duracion;
+  director.value = peliBuscada.director;
+};
+
+function editarPelicula() {
+  //1- buscaria la posicion de la pelicula en el array
+  let posicionPelicula = peliculas.findIndex(
+    (pelicula) => pelicula.id === codigo.value
+  );
+  console.log(posicionPelicula);
+  //2- editar los valores de la pelicula dentroe del array
+  peliculas[posicionPelicula].titulo = titulo.value;
+  peliculas[posicionPelicula].imagen = imagen.value;
+  peliculas[posicionPelicula].descripcion = descripcion.value;
+  peliculas[posicionPelicula].imagen = imagen.value;
+  peliculas[posicionPelicula].genero = genero.value;
+  peliculas[posicionPelicula].pais = pais.value;
+  peliculas[posicionPelicula].duracion = duracion.value;
+  peliculas[posicionPelicula].reparto = reparto.value;
+  peliculas[posicionPelicula].director = director.value;
+  //3- actualizar el localstorage
+  guardarLocalStorage();
+  //4-actualizar la fila
+  const tbody = document.querySelector("#tablaPelicula");
+  tbody.children[posicionPelicula].children[1].innerHTML = titulo.value;
+  tbody.children[posicionPelicula].children[2].innerHTML = descripcion.value;
+  tbody.children[posicionPelicula].children[3].children[0].innerHTML = imagen.value;
+  tbody.children[posicionPelicula].children[4].innerHTML = genero.value;
+  //5-mostrar un cartel al usuario
+  Swal.fire(
+    "Pelicula modificada",
+    "La pelicula fue modificada exitosamente",
+    "success"
+  );
+  //6- limpiar el formulario y cerrar el modal
+  limpiarFormularioPelicula();
+  modalPelicula.hide();
+}
 //logica
 btnAgregarPelicula.addEventListener("click", mostrarModalPelicula);
 formularioPelicula.addEventListener("submit", administrarFormularioPelicula);
