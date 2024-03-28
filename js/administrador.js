@@ -1,5 +1,5 @@
 import Pelicula from "./classPelicula.js";
-import { cantidadCaracteres } from "./helpers/validaciones.js";
+import { cantidadCaracteres, validarURLImagen } from "./helpers/validaciones.js";
 
 //variables globales
 const btnAgregarPelicula = document.getElementById("btnCrearPelicula");
@@ -45,7 +45,7 @@ function creandoPelicula() {
   console.log("aqui tengo que crear la peli");
   //todo: validar los datos
   //crear un objeto Pelicula
-  if(cantidadCaracteres(titulo, 2, 60) && cantidadCaracteres(descripcion, 2,200)){
+  if(cantidadCaracteres(titulo, 2, 60) && cantidadCaracteres(descripcion, 2,200) && validarURLImagen(imagen)){
     const peliculaNueva = new Pelicula(
       titulo.value,
       descripcion.value,
@@ -72,7 +72,7 @@ function creandoPelicula() {
       icon: "success",
     });
   }else{
-    alert('hay datos incorrectos')
+    
   }
   
   // modalPelicula.hide()
@@ -84,6 +84,7 @@ function guardarLocalStorage() {
 
 function limpiarFormularioPelicula() {
   formularioPelicula.reset();
+  //limpiar las clases de los input, textarea y select
 }
 
 function cargaInicial() {
