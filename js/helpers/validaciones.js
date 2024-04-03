@@ -23,3 +23,17 @@ export function validarURLImagen(input){
         return false
     }
 }
+
+export const validarGenero = (genero) => {
+    if (
+      genero === "Accion" ||
+      genero === "Drama" ||
+      genero === "Comedia" ||
+      genero === "Aventura" ||
+      genero === "Terror"
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
