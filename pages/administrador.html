@@ -138,7 +138,7 @@
                   placeholder="Ej: Po, quien se convertirá en el Maestro Espiritual del Valle de la Paz, busca a su sucesor como el nuevo Guerrero Dragón mientras lucha contra una nueva enemiga llamada 'La Camaleona'."
                 ></textarea>
                 <div class="invalid-feedback">
-                  La descripcion es obligatoria y debe tener entre 2 y 200 caracteres.
+                  La descripcion es obligatoria y debe tener entre 2 y 300 caracteres.
                 </div>
               </div>
               <div class="mb-3">
@@ -151,6 +151,9 @@
                   maxlength="120"
                   minlength="2"
                 />
+                <div class="invalid-feedback">
+                  La URL de la imagen es obligatoria y debe tener el formato de una imagen valida (jpg|gif|png).
+                </div>
               </div>
               <div class="mb-3">
                 <label for="genero">Genero *</label>
@@ -160,18 +163,26 @@
                   <option value="Drama">Drama</option>
                   <option value="Comedia">Comedia</option>
                   <option value="Aventura">Aventura</option>
+                  <option value="Suspenso">Suspenso</option>
+                  <option value="Terror">Terror</option>
                 </select>
+                <div class="invalid-feedback">
+                 El genero es obligatorio, debe seleccionar una opción de la lista.
+                </div>
               </div>
               <div class="mb-3">
                 <label for="anio">Año</label>
                 <input
                   id="anio"
-                  type="text"
+                  type="number"
                   class="form-control"
                   placeholder="Ej: 2023"
-                  maxlength="4"
-                  minlength="4"
+                  min="1895"
+                  max="9999"
                 />
+                <div class="invalid-feedback">
+                  El año debe ser un número valido.
+                 </div>
               </div>
               <div class="mb-3">
                 <label for="duracion"
@@ -181,12 +192,15 @@
                 >
                 <input
                   id="duracion"
-                  type="text"
+                  type="number"
                   class="form-control"
                   placeholder="Ej: 94 min"
-                  maxlength="2"
-                  minlength="2"
+                  min="1"
+                  max="900"
                 />
+                <div class="invalid-feedback">
+                  La duración debe ser un valor numerico entre 1 y 900
+                 </div>
               </div>
               <div class="mb-3">
                 <label for="pais">Pais</label>
@@ -198,6 +212,9 @@
                   maxlength="20"
                   minlength="2"
                 />
+                <div class="invalid-feedback">
+                  El pais debe contener como mínimo entre 2 y maximo 20 caracteres
+                 </div>
               </div>
               <div class="mb-3">
                 <label for="reparto"
@@ -213,6 +230,9 @@
                   maxlength="200"
                   minlength="2"
                 />
+                <div class="invalid-feedback">
+                  El reparto debe contener como mínimo entre 2 y maximo 200 caracteres
+                 </div>
               </div>
               <div class="mb-3">
                 <label for="director">Director *</label>
@@ -221,10 +241,13 @@
                   type="text"
                   class="form-control"
                   placeholder="Ej: James Wan"
-                  maxlength="200"
+                  maxlength="100"
                   minlength="2"
                 />
               </div>
+              <div class="invalid-feedback">
+                El director es un dato obligatorio. Debe contener como mínimo entre 2 y maximo 100 caracteres
+               </div>
               <div
                 class="alert alert-danger mt-3 d-none"
                 role="alert"

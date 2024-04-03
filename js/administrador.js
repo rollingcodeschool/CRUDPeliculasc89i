@@ -1,5 +1,5 @@
 import Pelicula from "./classPelicula.js";
-import { cantidadCaracteres, validarURLImagen } from "./helpers/validaciones.js";
+import { cantidadCaracteres, validarAnioCreacion, validarCaracteresNoObligatorio, validarGenero, validarMinutosPelicula, validarURLImagen } from "./helpers/validaciones.js";
 
 //variables globales
 const btnAgregarPelicula = document.getElementById("btnCrearPelicula");
@@ -22,6 +22,11 @@ const peliculas = JSON.parse(localStorage.getItem("listaPeliculasKey")) || [];
 
 console.log(localStorage.getItem("listaPeliculasKey"));
 console.log(peliculas);
+
+const userAdmin={
+  email: 'admin@admin.com',
+  password: '1Ss2312'
+}
 //funciones
 function mostrarModalPelicula() {
   crearPelicula = true;
@@ -45,7 +50,8 @@ function creandoPelicula() {
   console.log("aqui tengo que crear la peli");
   //todo: validar los datos
   //crear un objeto Pelicula
-  if(cantidadCaracteres(titulo, 2, 60) && cantidadCaracteres(descripcion, 2,200) && validarURLImagen(imagen)){
+  if(cantidadCaracteres(titulo, 2, 60) && cantidadCaracteres(descripcion, 2,300) && validarURLImagen(imagen) && validarGenero(genero) && cantidadCaracteres(director, 2,200) &&
+  validarAnioCreacion(anio) && validarMinutosPelicula(duracion) && validarCaracteresNoObligatorio(pais,2,20) && validarCaracteresNoObligatorio(reparto,2,200)){
     const peliculaNueva = new Pelicula(
       titulo.value,
       descripcion.value,
@@ -85,6 +91,9 @@ function guardarLocalStorage() {
 function limpiarFormularioPelicula() {
   formularioPelicula.reset();
   //limpiar las clases de los input, textarea y select
+   // Obtener todos los elementos hijos del formulario
+   const elementosFormulario = formularioPelicula.querySelectorAll("input, textarea, select");
+  elementosFormulario.forEach((elemento)=> elemento.classList.remove("is-valid", "is-invalid"))
 }
 
 function cargaInicial() {
