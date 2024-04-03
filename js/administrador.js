@@ -22,6 +22,11 @@ const peliculas = JSON.parse(localStorage.getItem("listaPeliculasKey")) || [];
 
 console.log(localStorage.getItem("listaPeliculasKey"));
 console.log(peliculas);
+
+const userAdmin={
+  email: 'admin@admin.com',
+  password: '1Ss2312'
+}
 //funciones
 function mostrarModalPelicula() {
   crearPelicula = true;

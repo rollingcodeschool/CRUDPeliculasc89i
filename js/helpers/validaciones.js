@@ -61,7 +61,7 @@ export function validarAnioCreacion(anio) {
 
 export function validarMinutosPelicula(minutos) {
     // Verificamos si la duración es un número válido y si es mayor que cero
-    if (!isNaN(minutos.value) && minutos.value >= 0 && minutos.value <= 900) {
+    if (!isNaN(minutos.value) && minutos.value > 0 && minutos.value <= 900) {
         minutos.classList.remove("is-invalid");
         minutos.classList.add("is-valid");
     return true;
