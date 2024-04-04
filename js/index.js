@@ -16,10 +16,15 @@ function crearColumna(pelicula) {
       <h5 class="card-title">${pelicula.titulo}</h5>
     </div>
     <div class='card-footer text-end '>
-    <a class="btn btn-primary" href='../pages/detalle.html'>ver detalle</a>
+    <button class="btn btn-primary" onclick='verDetallePelicula("${pelicula.id}")'>ver detalle</button>
     </div>
   </div>
 </div>
     `;
 }
 
+function verDetallePelicula(id){
+ console.log(id)
+ console.log(window.location.origin +'/pages/detalle.html')
+ window.location.href = window.location.origin +'/pages/detalle.html?codigo='+id;
+}
